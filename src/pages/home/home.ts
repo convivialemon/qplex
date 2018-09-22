@@ -13,7 +13,7 @@ export class HomePage {
   constructor() {
     this.toUser = {
       toUserId:'210000198410281948',
-      toUserName:'Hancock'
+      toUserName:'Qplex'
     }
   }
 

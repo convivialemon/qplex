@@ -32,8 +32,8 @@ export class ChatService {
     const mockMsg: ChatMessage = {
       messageId: Date.now().toString(),
       userId: '210000198410281948',
-      userName: 'Hancock',
-      userAvatar: './assets/to-user.jpg',
+      userName: 'Qplex',
+      userAvatar: './assets/qplex.png',
       toUserId: '140000198202211138',
       time: Date.now(),
       message: msg.message,
@@ -59,8 +59,8 @@ export class ChatService {
   getUserInfo(): Promise<UserInfo> {
     const userInfo: UserInfo = {
       id: '140000198202211138',
-      name: 'Luff',
-      avatar: './assets/user.jpg'
+      name: 'Emon',
+      avatar: './assets/emon.jpg'
     };
     return new Promise(resolve => resolve(userInfo));
   }

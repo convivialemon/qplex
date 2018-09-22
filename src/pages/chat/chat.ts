@@ -54,16 +54,16 @@ export class Chat {
     this.scrollToBottom();
   }
 
-  switchEmojiPicker() {
-    this.showEmojiPicker = !this.showEmojiPicker;
-    if (!this.showEmojiPicker) {
-      this.focus();
-    } else {
-      this.setTextareaScroll();
-    }
-    this.content.resize();
-    this.scrollToBottom();
-  }
+  // switchEmojiPicker() {
+  //   this.showEmojiPicker = !this.showEmojiPicker;
+  //   if (!this.showEmojiPicker) {
+  //     this.focus();
+  //   } else {
+  //     this.setTextareaScroll();
+  //   }
+  //   this.content.resize();
+  //   this.scrollToBottom();
+  // }
 
   /**
    * @name getMsg
