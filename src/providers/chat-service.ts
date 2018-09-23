@@ -11,8 +11,9 @@ export class ChatMessage {
   userAvatar: string;
   toUserId: string;
   time: number | string;
-  message: string;
+  message: any;
   status: string;
+  sensor?:any;
 }
 
 export class UserInfo {
@@ -28,7 +29,10 @@ export class ChatService {
               private events: Events) {
   }
 
-  mockNewMsg(msg) {
+  mockNewMsg({ message, sensor }) {
+
+    const refineMsg = typeof message === "object" ? ( message.length ? message[0].text : "Whatever ask another question" ) : message;
+
     const mockMsg: ChatMessage = {
       messageId: Date.now().toString(),
       userId: '210000198410281948',
@@ -36,8 +40,9 @@ export class ChatService {
       userAvatar: './assets/qplex.png',
       toUserId: '140000198202211138',
       time: Date.now(),
-      message: msg.message,
-      status: 'success'
+      message: refineMsg,
+      status: 'success',
+      sensor: sensor
     };
 
     setTimeout(() => {
@@ -51,9 +56,36 @@ export class ChatService {
     .pipe(map(response => response.array));
   }
 
+  getQuestionResponse(msg): Observable<ChatMessage[]> {
+    const { sensor: { type, q_id }, message } = msg;
+    let url = "https://learner.now.sh/api/";
+    // let url = "http://localhost:8200/api/";
+    if (type === "question") {
+      url = `${url}question?question=${message}`;
+    } else if(type === "answer") {
+      url = `${url}answer?answer=${message}&question_id=${q_id}`;
+    } else {
+      return message;
+    }
+    return this.http.get<any>(url)
+    .pipe(map(response => response));
+  }
+
   sendMsg(msg: ChatMessage) {
-    return new Promise(resolve => setTimeout(() => resolve(msg), Math.random() * 1000))
-    .then(() => this.mockNewMsg(msg));
+    return new Promise(resolve => setTimeout(() => {
+      if (msg.sensor.type) {
+        this.getQuestionResponse(msg)
+        .subscribe(res => {
+          console.log('re', res)
+          resolve(res)
+        })
+      } else {
+        resolve(msg)
+      }
+    }, Math.random() * 1000))
+    .then((res) => {
+      this.mockNewMsg(res)
+    });
   }
 
   getUserInfo(): Promise<UserInfo> {
