@@ -84,7 +84,7 @@ export class Chat {
    */
   sendMsg() {
     if (!this.editorMsg.trim()) return;
-
+    const sens = this.msgList[this.msgList.length - 1].sensor;
     // Mock message
     const id = Date.now().toString();
     let newMsg: ChatMessage = {
@@ -95,8 +95,11 @@ export class Chat {
       toUserId: this.toUser.id,
       time: Date.now(),
       message: this.editorMsg,
-      status: 'pending'
+      status: 'pending',
+      sensor: sens? sens : { type: 'question', q_id: null }
     };
+
+    console.log('last', newMsg)
 
     this.pushNewMsg(newMsg);
     this.editorMsg = '';
