@@ -67,9 +67,9 @@
     "description": "chat: An Ionic project",
     "cordova": {
         "platforms": [
-            "android",
             "browser",
-            "ios"
+            "ios",
+            "android"
         ],
         "plugins": {
             "cordova-plugin-console": {},
