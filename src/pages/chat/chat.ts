@@ -77,15 +77,6 @@ export class Chat {
     // Mock message
     const id = Date.now().toString();
     let theMsg = this.editorMsg;
-    let noq = /[?]/g
-    if(theMsg.match(noq)){
-      let len = theMsg.length - 2
-      theMsg = theMsg.slice(0,len)
-      console.log(theMsg)
-    }else{
-      console.log(false)
-    }
-    
     theMsg = theMsg.toLowerCase( )
     
     let newMsg: ChatMessage = {
