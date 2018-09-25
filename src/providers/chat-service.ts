@@ -11,9 +11,9 @@ export class ChatMessage {
   userAvatar: string;
   toUserId: string;
   time: number | string;
-  message: any;
+  message?: string;
   status: string;
-  sensor?:any;
+  sensor?: any;
 }
 
 export class UserInfo {
@@ -29,20 +29,20 @@ export class ChatService {
               private events: Events) {
   }
 
-  mockNewMsg({ message, sensor }) {
+  mockNewMsg(msg) {
 
-    const refineMsg = typeof message === "object" ? ( message.length ? message[0].text : "Whatever ask another question" ) : message;
+    const refineMsg = typeof msg.message === "object" ? ( msg.message.length ? msg.message[0].text : "Whatever ask another question" ) : msg.message;
 
     const mockMsg: ChatMessage = {
       messageId: Date.now().toString(),
       userId: '210000198410281948',
       userName: 'Qplex',
-      userAvatar: './assets/qplex.png',
+      userAvatar: './assets/qplex-logo.png',
       toUserId: '140000198202211138',
       time: Date.now(),
       message: refineMsg,
       status: 'success',
-      sensor: sensor
+      sensor: msg.sensor
     };
 
     setTimeout(() => {

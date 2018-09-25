@@ -3,12 +3,12 @@
     {
       "messageId":"1",
       "userId":"210000198410281948",
-      "userName":"QPLEX",
+      "userName":"Qplex",
       "userImgUrl":"./assets/emon.jpg",
       "toUserId":"140000198202211138",
       "toUserName":"Emon",
-      "userAvatar":"./assets/qplex.png",
-      "time":1491034800000,
+      "userAvatar":"./assets/qplex-logo.png",
+      "time":1537897198057,
       "message":"Hi there!",
       "status":"success"
     }
