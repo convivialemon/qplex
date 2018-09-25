@@ -77,14 +77,15 @@ export class Chat {
     // Mock message
     const id = Date.now().toString();
     let theMsg = this.editorMsg;
-    let flag = /"?"/gi;
-    
-    if(theMsg.search(flag)){
+    let noq = /[?]/g
+    if(theMsg.match(noq)){
       let len = theMsg.length - 2
       theMsg = theMsg.slice(0,len)
+      console.log(theMsg)
     }else{
-      console.log("false")
+      console.log(false)
     }
+    
     theMsg = theMsg.toLowerCase( )
     
     let newMsg: ChatMessage = {
@@ -98,6 +99,7 @@ export class Chat {
       status: 'pending',
       sensor: sens? sens : { type: 'question', q_id: null }
     };
+    
 
     //console.log('last', newMsg)
 
